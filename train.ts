@@ -35,3 +35,4 @@ const getHighestIndex = (sonlarList: number[]): number => {
 
 const result: number = getHighestIndex(randomNumbers);
 console.log("Arrayning tarkibidagi birinchi eng katta qiymatning indeksi:", result);
+// fixed
