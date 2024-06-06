@@ -16,3 +16,14 @@
     Design Pattern => insonni qoli => ex: Middleware, Decotar
 
 */
+
+
+
+
+//import moment from "moment";  // <= bu Modeljs
+// CommonJs da biz => const moment = require('moment')
+import dotenv from "dotenv";
+dotenv.config()
+
+// console.log("PORT:", process.env.PORT);
+
