@@ -1,38 +1,35 @@
-// 2024-06-04
-// 35th Lesson
-// MIT 14 TASK G:
-
-// Yagona parametrga ega function tuzing.
-// Va bu function parametr orqalik integer ma'lumot turlariga ega bo'lgan bir arrayni qabul qilsin.
-// Ushbu function bizga arrayning tarkibidagi birinchi eng katta qiymatning indeksini qaytarsin.
-
-// MASALAN: getHighestIndex([5, 21, 12, 21 ,8]); return qiladi 1 sonini
-// Yuqoridagi misolda, birinchi indeksda 21 joylashgan.
-// Va bu 21 soni arrayning taribidagi birinchi eng katta son hisobladi va bizga uning indeksi 1 qaytadi.
 // ==============================================================================================================
 console.log("--------------------------------------------------------------");
 
-const randomNumbers: number[] = [5, 21, 12, 21, 8];
+// 2024-06-07
+// MIT 14 TASK H:
 
-const getHighestIndex = (sonlarList: number[]): number => {
-  if (!Array.isArray(sonlarList)) {
-    throw new Error("Parameter must be an array");
-  }
 
-  // Initialize maxIndex to 0 and maxValue to the first element
-  let maxIndex: number = 0;
-  let maxValue: number = sonlarList[0];
+// Integerlardan iborat arrayni argument sifatida qabul qiladigan
+// function tuzing. Ushbu function faqatgina positive sonlarni olib
+// string holatida return qilsin.
 
-  // Iterate through the array to find the index of the first maximum value
-  for (let i = 1; i < sonlarList.length; i++) {
-    if (sonlarList[i] > maxValue) {
-      maxValue = sonlarList[i];
-      maxIndex = i;
+// MASALAN: getPositive([1, -4, 2]) return qiladi "12".
+// -4 positive emas negative number bo'lganligi uchun
+// uni ignore qilib qolganlarini birlashtirib string ko'rinishadi qaytarmoqda
+
+
+const integerArrays: number[] = [1, -4, 2, 6, -7, 3, 8];
+
+const getPositive = (integerList: number[]): number[] => {
+    if (!Array.isArray(integerList)) {
+        throw new Error("Parameter must be an array");
     }
-  }
-  return maxIndex;
-};
 
-const result: number = getHighestIndex(randomNumbers);
-console.log("Arrayning tarkibidagi birinchi eng katta qiymatning indeksi:", result);
-// fixed
+    const positiveNumbers: number[] = [];
+    for (let i = 0; i < integerList.length; i++) {
+        if (integerList[i] > 0) {
+            positiveNumbers.push(integerList[i]);
+        }
+    }
+    
+    return positiveNumbers;
+}
+
+const result = getPositive(integerArrays);
+console.log(`Positive numbers: ${result}`);
