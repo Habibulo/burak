@@ -1,35 +1,23 @@
 // ==============================================================================================================
 console.log("--------------------------------------------------------------");
 
-// 2024-06-07
-// MIT 14 TASK H:
+// 2024-06-08
+// MIT 14
+// 39th Lesson TASK H2
+
+// String argument pass bo'ladigan function tuzing.
+// Ushbu function argument tarkibidagi digit(son)larni topib
+// yangi stringda return qilsin
+
+// MASALAN: getDigits("m14i1t"); return qiladi "141"
+// Yuqoridagi misolda, berilayotgan parametr tarkibida ham harf ham son mavjud.
+// Natija sifatida text tarkibidagi sonlarni aniqlab ularni string ko'rinishida qaytarmoqdamiz.
 
 
-// Integerlardan iborat arrayni argument sifatida qabul qiladigan
-// function tuzing. Ushbu function faqatgina positive sonlarni olib
-// string holatida return qilsin.
-
-// MASALAN: getPositive([1, -4, 2]) return qiladi "12".
-// -4 positive emas negative number bo'lganligi uchun
-// uni ignore qilib qolganlarini birlashtirib string ko'rinishadi qaytarmoqda
-
-
-const integerArrays: number[] = [1, -4, 2, 6, -7, 3, 8];
-
-const getPositive = (integerList: number[]): number[] => {
-    if (!Array.isArray(integerList)) {
-        throw new Error("Parameter must be an array");
-    }
-
-    const positiveNumbers: number[] = [];
-    for (let i = 0; i < integerList.length; i++) {
-        if (integerList[i] > 0) {
-            positiveNumbers.push(integerList[i]);
-        }
-    }
+function getDigits(str: string){
+    const arr  = str.split ("");
+    return arr.filter(value => value >= '0' && value <= '9').join('');
     
-    return positiveNumbers;
 }
 
-const result = getPositive(integerArrays);
-console.log(`Positive numbers: ${result}`);
+console.log(getDigits("s4dfdsdfsdg54665s4dsfga5dfg46sd5ag4"));

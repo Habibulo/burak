@@ -56,3 +56,19 @@ mongoose
         })
     })
     .catch((err) => console.log("error on connection MongoDB", err))
+
+/* 
+    37_38_Dars 
+    Darsimiz Rejasi:
+        38 =>
+        - Routerlarni organamiz
+        - MVC architectual patterni organamiz
+        - Member Controllerlarni hosil qilamiz
+        - Restaurant Controllerlarni hosil qilamiz
+        39 =>
+        - Member Service Model organamiz
+        - Mongoose documentationidan 
+            Schema, Model va Quary 
+            tushunchalarini organamiz
+        - Schema Member Model hosil qilamiz 
+*/
