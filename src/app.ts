@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express';
 import path from "path"
 import router from './router';
+import routerAdmin from "./routerAdmin"
 
 // 1. Entrance
 const app = express()
@@ -15,6 +16,9 @@ app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 
 // 4. Routers
-app.use('/', router) // Middleware Design Pattern
+// BSSR backend server side rendering (EJS dan foydalanmiz)
+app.use('/admin', routerAdmin) // Middleware Design Pattern => SPA(single page application): (EJS)
+app.use('/', router) // Middleware Design Pattern => SPA(single page application): REACT
+
 
 export default app
