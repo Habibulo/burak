@@ -23,6 +23,26 @@ restaurantController.getLogin = (req: Request, res: Response) => {
     }
 }
 
+
+restaurantController.processLogin = (req: Request, res: Response) => {
+    try {
+    console.log("User is redirected to Login Process Page")
+    res.send("Login Process Page");
+    } catch (err) {
+        console.log("Error, getProcessLogin", err)
+    }
+}
+
+
+restaurantController.processSignup = (req: Request, res: Response) => {
+    try {
+    console.log("User is redirected to Signup Process Page")
+    res.send("Signup Process Page");
+    } catch (err) {
+        console.log("Error, getProcessSignup", err)
+    }
+}
+
 restaurantController.getSignup = (req: Request, res: Response) => {
     try {
     console.log("User is redirected to Signup Page")
