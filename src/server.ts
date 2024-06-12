@@ -51,7 +51,7 @@ mongoose
         console.log("MongoDB succesfully connected")
         const PORT = process.env.PORT ?? 3003;
         app.listen(PORT, function() {
-            console.log(`The server is succesfully running at: http://localhost:${PORT}`);
+            console.log(`The server is succesfully running at: http://localhost:${PORT}/admin`);
             
         })
     })
@@ -100,5 +100,22 @@ mongoose
 =====================================================================
         - Adminka loyihasi uchun moljallangan toliq signup API ni toliq develop qilamiz
 */
+
+
+
+
+/* 
+    41_42_Dars 
+    Darsimiz Rejasi:
+        41 =>
+        - Adminka Loyihasini login API ni develop qilamiz
+        - Passwordlarni hashing qilish mexanizmi yani Bycript ni organamiz
+=====================================================================
+        42 =>
+        - ...
+        - ...
+*/
+
+
 
 

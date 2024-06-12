@@ -1,5 +1,5 @@
 import MemberModel from "../schema/Member.model";
-import { Member, MemberInput } from "../libs/types/member";
+import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { memberType } from "../libs/enums/member.enum";
 
@@ -24,6 +24,22 @@ class MemberService {
         } catch (err) {
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
         }
+    }
+    public async processLogin(input: LoginInput): Promise<Member> {
+        const member = await this.memberModel
+            .findOne(
+                { memberNick: input.memberNick},
+                { _id: 0, memberNick: 1, memberPassword: 1 }
+            )
+            .exec()
+        if(!member) throw new Errors(HttpCode.NOT_FOUND, Message.NICK_NOT_FOUND)
+        const isMatch = input.memberPassword === member.memberPassword
+        if(!isMatch) throw new Errors(HttpCode.UNAUTHORISED, Message.WRONG_PASSWORD)
+        
+        return await this.memberModel.findOne(member._id).exec()
+        // const result = await this.memberModel.findOne({memberNick: input.memberNick}).exec()
+        // console.log("result", result) 
+        // return result           
     }
 }
 export default MemberService
