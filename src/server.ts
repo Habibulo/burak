@@ -72,3 +72,33 @@ mongoose
             tushunchalarini organamiz
         - Schema Member Model hosil qilamiz 
 */
+
+
+
+
+/* 
+    39_40_Dars 
+    Darsimiz Rejasi:
+        39 =>
+        - Loyihamizni Standardlarini quramiz
+            . Logging standards
+            . Naming Standards 
+                function, methods, variable => CAMEL ex: goHome
+                class => PASCAL                      ex: MemberService
+                folder => KEBAB                      ex: 
+                css => SNAKE                         ex: button_style
+            . Error handling 
+=====================================================================
+        - API request method lari va postman organamiz
+=====================================================================
+        40 =>
+        - Api ozi nima va turlari
+            . Traditional API
+            . REST API
+            . GraphQL API
+            . ...
+=====================================================================
+        - Adminka loyihasi uchun moljallangan toliq signup API ni toliq develop qilamiz
+*/
+
+

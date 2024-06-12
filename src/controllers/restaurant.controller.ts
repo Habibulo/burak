@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { T } from "../libs/types/comments"
 const restaurantController: T = {};
 import MemberService from "../models/Member.service";
+import { memberType } from "../libs/enums/member.enum";
 
 
 
@@ -34,12 +35,20 @@ restaurantController.processLogin = (req: Request, res: Response) => {
 }
 
 
-restaurantController.processSignup = (req: Request, res: Response) => {
+restaurantController.processSignup = async (req: Request, res: Response) => {
     try {
-    console.log("User is redirected to Signup Process Page")
-    res.send("Signup Process Page");
+        console.log("User is redirected to Signup Process Page")
+        console.log(`body:`, req.body);
+        const newMember = req.body
+        newMember.memberType = memberType.RESTAURANT
+
+        const memberService = new MemberService()
+        const result = await memberService.processSignup(newMember)
+        res.send("Signup Process Page");
+
     } catch (err) {
         console.log("Error, getProcessSignup", err)
+        res.send(err)
     }
 }
 
