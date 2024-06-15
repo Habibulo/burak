@@ -1,23 +1,36 @@
 // ==============================================================================================================
 console.log("--------------------------------------------------------------");
-
-// 2024-06-08
+// 2024-06-15
 // MIT 14
-// 39th Lesson TASK H2
+// TASK I:
 
-// String argument pass bo'ladigan function tuzing.
-// Ushbu function argument tarkibidagi digit(son)larni topib
-// yangi stringda return qilsin
+// Shunday function tuzing, u parametrdagi array ichida eng ko'p
+// takrorlangan raqamni topib qaytarsin.
 
-// MASALAN: getDigits("m14i1t"); return qiladi "141"
-// Yuqoridagi misolda, berilayotgan parametr tarkibida ham harf ham son mavjud.
-// Natija sifatida text tarkibidagi sonlarni aniqlab ularni string ko'rinishida qaytarmoqdamiz.
+// MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
 
+// Yuqoridag misolda argument sifatida kiritilayotgan array tarkibida 4 soni ko'p takrorlanganligi uchun 4'ni return qilmoqda.
 
-function getDigits(str: string){
-    const arr  = str.split ("");
-    return arr.filter(value => value >= '0' && value <= '9').join('');
-    
-}
+const arrayOfNumbers: number[] = [1, 2, 3, 4, 5, 4, 3, 4];
+const majorityElement = (numbers: number[]) => {
+    const countMap = new Map<number, number>();
+    for (let num of numbers) {
+        countMap.set(num, (countMap.get(num) || 0) + 1);
+    }
 
-console.log(getDigits("s4dfdsdfsdg54665s4dsfga5dfg46sd5ag4"));
+    let maxCount = 0;
+    let majorityElement = 0;
+
+    for (let [num, count] of countMap) {
+        if (count > maxCount) {
+            maxCount = count;
+            majorityElement = num;
+        }
+    }
+
+    return majorityElement;
+};
+
+const result = majorityElement(arrayOfNumbers);
+console.log("result:", result);
+
