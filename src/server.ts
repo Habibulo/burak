@@ -51,7 +51,7 @@ mongoose
         console.log("MongoDB succesfully connected")
         const PORT = process.env.PORT ?? 3003;
         app.listen(PORT, function() {
-            console.log(`The server is succesfully running at: http://localhost:${PORT}/admin`);
+            console.log(`The server is succesfully running at:\n  For Admin: http://localhost:${PORT}/admin\n  For Users: http://localhost:${PORT}/login`);
             
         })
     })
@@ -112,10 +112,25 @@ mongoose
         - Passwordlarni hashing qilish mexanizmi yani Bycript ni organamiz
 =====================================================================
         42 =>
-        - ...
-        - ...
+        - VPS va VPC ozi nima?
+        - Serverlarni ozaro boglanishi turlari
+        - Authentication nima va uni tashkillashtirish
+        - Session Auth qanday ishlashini nazariy tahlili
+        - Browser larni hotiralari
 */
 
+
+/* 
+    43_44_Dars 
+    Darsimiz Rejasi:
+        43 =>
+        - Frontendni qurishning 2xil usuli: BSSR va SPA
+        - SPA ning login va signup jarayonini develop qilamiz
+=====================================================================
+        44 =>
+        - 
+        -
+*/
 
 
 
