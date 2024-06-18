@@ -3,19 +3,21 @@ console.log("--------------------------------------------------------------");
 
 // 2024-06-08
 // MIT 14
-// 44th Lesson J-TASK: 
+// 39th Lesson TASK H2
 
-// Shunday function yozing, u string qabul qilsin va string ichidagi eng uzun sozni qaytarsin.
-// MASALAN: findLongestWord("I come from Uzbekistan") return "Uzbekistan"
-function findLongestWord(str: string): string {
-    let words: string[] = str.split(' ');
-    let longestWord: string = '';
-    for (let word of words) {
-        if (word.length > longestWord.length) {
-            longestWord = word;
-        }
-    }
-    return longestWord;
+// String argument pass bo'ladigan function tuzing.
+// Ushbu function argument tarkibidagi digit(son)larni topib
+// yangi stringda return qilsin
+
+// MASALAN: getDigits("m14i1t"); return qiladi "141"
+// Yuqoridagi misolda, berilayotgan parametr tarkibida ham harf ham son mavjud.
+// Natija sifatida text tarkibidagi sonlarni aniqlab ularni string ko'rinishida qaytarmoqdamiz.
+
+
+function getDigits(str: string){
+    const arr  = str.split ("");
+    return arr.filter(value => value >= '0' && value <= '9').join('');
+    
 }
 
-console.log(findLongestWord("I come from Uzbekistan"));
+console.log(getDigits("s4dfdsdfsdg54665s4dsfga5dfg46sd5ag4"));

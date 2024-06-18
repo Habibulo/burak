@@ -51,8 +51,9 @@ mongoose
         console.log("MongoDB succesfully connected")
         const PORT = process.env.PORT ?? 3003;
         app.listen(PORT, function() {
-            console.log(`The server is succesfully running at:\n  For Admin: http://localhost:${PORT}/admin\n  For Users: http://localhost:${PORT}/login`);
-            
+        console.info(`The server is succesfully running at: 
+            For Admin: http://localhost:${PORT}/admin
+            For Users: http://localhost:${PORT}/login`);
         })
     })
     .catch((err) => console.log("error on connection MongoDB", err))
@@ -128,8 +129,10 @@ mongoose
         - SPA ning login va signup jarayonini develop qilamiz
 =====================================================================
         44 =>
-        - 
-        -
+        - Adminka loyihamizni frontend Pagelarini belgilaymiz
+        - Frontend Css image va Javascript folder va file larni hosil qilamiz
+        - Frontend da external packagelarni install qilib Bootstrap css frameworkini ishlatamiz
+        - Frontend da ishlatiladigan header hamda footer larni joriy qilamiz
 */
 
 

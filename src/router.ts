@@ -7,6 +7,7 @@ const router = express.Router();
 // router.get("/", memberController.goHome);
 // Login Page
 router
+    // .get("/login", memberController.login)
     .post("/login", memberController.login);
 // Sign-up Page
 router
