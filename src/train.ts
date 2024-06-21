@@ -1,28 +1,29 @@
 // ==============================================================================================================
 console.log("--------------------------------------------------------------");
-// 2024-06-18
+// 2024-06-21
 // MIT 14
-// TASK J:
+// TASK K:
 
-// Shunday function tuzing, u string qabul qilsin.
-// Va string ichidagi eng uzun so'zni qaytarsin.
+// Berilayotgan parametr tarkibida nechta unli harf bor
+// ekanligini aniqlovchi function tuzing
 
-// MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
+// MASALAN: countVowels("string"); return 1
 
-// Yuqoridagi text tarkibida 'Uzbekistan'
-// eng uzun so'z bo'lganligi uchun 'Uzbekistan'ni qaytarmoqda
+// Yuqoridagi misolda 'string' so'zi tarkibida yagona unli harf 'i'
+// bo'lganligi uchun '1'ni qaytarmoqda
 
 
-function findLongestWord(str: string): string {
-    let words = str.split(' ');
-    let longestWord = '';
-    for (let word of words) {
-        if (word.length > longestWord.length) {
-            longestWord = word;
+function countVowels(input: string): number {
+    const vowels = "aeiouAEIOU";
+    let count = 0;
+    for (const char of input) {
+        if (vowels.includes(char)) {
+            count++;
         }
     }
-    return longestWord;
+    return count;
 }
 
-console.log(findLongestWord("I come from Uzbekistan")); // Output: "Uzbekistan"
-;
+//  Misol
+const result = countVowels("string");
+console.log(result);  //1

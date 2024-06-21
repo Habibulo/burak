@@ -134,6 +134,12 @@ mongoose
         - Frontend da external packagelarni install qilib Bootstrap css frameworkini ishlatamiz
         - Frontend da ishlatiladigan header hamda footer larni joriy qilamiz
 */
+/*
+    46_Dars 
+    Darsimiz rejasi:
+        - Session authentication jarayonini develop qilamiz
+        - Test maqsadida checkAuthSession API'ni develop qilamiz
+        - Session ishlash mexanizimini muxokama etamiz
+        - Birgalikda logout API'ni xosil qilamiz
 
-
-
+*/

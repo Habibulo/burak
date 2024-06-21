@@ -17,6 +17,7 @@ export enum Message {
     NICK_NOT_FOUND = "MEMBER NOT FOUND WITH MEMBER NICKNAME",
     USED_NICK = "Already in use",
     WRONG_PASSWORD = "Wrong password",
+    NOT_AUTHENTICATED = "NOT_AUTHENTICATED",
 }
 class Errors extends Error {
     public code: HttpCode;
