@@ -1,29 +1,15 @@
-// ==============================================================================================================
-console.log("--------------------------------------------------------------");
-// 2024-06-21
-// MIT 14
-// TASK K:
+/* 
+L-TASK: 
 
-// Berilayotgan parametr tarkibida nechta unli harf bor
-// ekanligini aniqlovchi function tuzing
+Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
-// MASALAN: countVowels("string"); return 1
+*/
+const reverseSentence = (str: string): string => {
+    const arr = str.split(' ')
+    return  arr.map(ele => ele.split('').reverse().join('')).join(' ')
+  }
 
-// Yuqoridagi misolda 'string' so'zi tarkibida yagona unli harf 'i'
-// bo'lganligi uchun '1'ni qaytarmoqda
-
-
-function countVowels(input: string): number {
-    const vowels = "aeiouAEIOU";
-    let count = 0;
-    for (const char of input) {
-        if (vowels.includes(char)) {
-            count++;
-        }
-    }
-    return count;
-}
-
-//  Misol
-const result = countVowels("string");
-console.log(result);  //1
+  const result = reverseSentence("Hi my name is Daniel")
+  console.log(result);
+  

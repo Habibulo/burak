@@ -143,3 +143,15 @@ mongoose
         - Birgalikda logout API'ni xosil qilamiz
 
 */
+
+/*
+    47_Dars 
+    Darsimiz Rejasi:
+        47 => Product Controller
+        - Productga daxldor MVC ni quramiz
+        - Restuaurant verification middleware mantiqni hosil qilamiz 
+        - Browser local variable hosil qilishni organamiz 
+        - Serverimizga fayl yuklash middleware mantiqni develop qilamiz
+        48 => Product - Schema Model
+
+*/
