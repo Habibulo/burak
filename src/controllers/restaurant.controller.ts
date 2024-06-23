@@ -1,149 +1,149 @@
-import { NextFunction, Request, Response } from "express";
-import MemberService from "../models/Member.service";
-import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
-import { memberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/Errors";
+import { NextFunction, Request, Response } from 'express';
 import { T } from "../libs/types/comments";
-import { log } from "console";
-import { resolve } from "dns/promises";
+import MemberService from '../models/Member.service';
+import { AdminRequest, LoginInput, MemberInput } from '../libs/types/member';
+import { Message } from '../libs/Errors';
+import { memberType } from '../libs/enums/member.enum';
 
-const restaurantController: T = {};
+
 const memberService = new MemberService();
-
+const restaurantController: T = {}
 restaurantController.goHome = (req: Request, res: Response) => {
     try {
-        console.log("User is redirected to Home Page");
-        res.render("home");
-        // send | json | redirect | end | render
-    } catch (err: any) {
-        console.log("Error on Home Page:", err.message);
-        res.redirect("/admin");
-    }
-};
 
-restaurantController.getSignup = (req: Request, res: Response) => {
-    try {
-        log("User is redirected to Signup Page")
-        res.render("");
-    } catch (err: any) {
-        console.log("Error on Signup Page:", err.message);
-        res.redirect("/admin");
+        console.log("Home Page")
+        res.render('home')
+
+        // send | json | redirect | end | render
+
+    } catch (err) {
+        console.log("Error, goHome", err);
+        res.redirect('/admin')
+
     }
 };
 
 restaurantController.getLogin = (req: Request, res: Response) => {
     try {
-        console.log("User is redirected to Login Page");
-        res.render("login");
-    } catch (err: any) {
-        console.log("Error on Login Page:", err.message);
-        res.redirect("/admin");
+        console.log("Login Page")
+        res.render("login")
+
+    } catch (err) {
+        console.log("Error, Login", err);
+        res.redirect('/admin')
+
+    }
+};
+restaurantController.getSignup = (req: Request, res: Response) => {
+    try {
+        console.log("Signup Page")
+
+        res.render("signup")
+
+    } catch (err) {
+        console.log("Error, Signup", err);
+        res.redirect('/admin')
+
     }
 };
 
+
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
-        console.log("User is redirected to Process Signup Page");
-        if (!req.body) {
-            throw new Error("Request body is null");
-        }
+        console.log("ProcessSignup")
+
         const newMember: MemberInput = req.body;
         newMember.memberType = memberType.RESTAURANT;
+        const result = await memberService.processSignup(newMember)
 
-        const result = await memberService.processSignup(newMember);
-
-        // TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
+        //TODO: SESSIONS AUTHENTICATION
 
         req.session.member = result;
         req.session.save(() => {
-            res.send(result);
-        });
-    } catch (err: any) {
-        const message =
-            err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(
-            `<script>alert("${message}"); window.location.replace("/admin/signup")</script>`
-        );
+            res.send(result)
+        })
+
+
+
+    } catch (err) {
+        console.log("Error, ProcessLogin", err);
+        const message = err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script>alert(${message}); window.location.replace('admin/signup')</script>`)
+
     }
 };
 
 restaurantController.processLogin = async (req: AdminRequest, res: Response) => {
     try {
-        // console.log("req.body: ", req.body);
-
-        // if (!req.body) {
-        //     throw new Error("Request body is null");
-        // }
-
+        console.log("ProcessLogin")
         const input: LoginInput = req.body;
-        console.log("input:", input);
-        const result = await memberService.processLogin(input);
-        console.log("result", result);
-        
-
-        // TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
+        const result = await memberService.processLogin(input)
+        //TODO: SESSION AUTH
 
         req.session.member = result;
         req.session.save(() => {
+
             res.send(result);
         });
-    } catch (err: any) {
-        console.log("Error on AdminLogin:", err.message);
-        const message =
-            err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(
-            `<script>alert("${message}"); window.location.replace("/admin/login")</script>`
-        );
-    }
-};
 
+    } catch (err) {
+        console.log("Error, ProcessLogin", err);
+        const message = err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script>alert(${message}); window.location.replace('admin/signup')</script>`)
+
+    }
+
+};
 restaurantController.logout = async (req: AdminRequest, res: Response) => {
     try {
-        console.log("req.body: ", req.body);
-        req.session.destroy(() => {
-            res.redirect("/admin");
-            // res.send("cookie session is destroyed successfuly!")
-        });
-    } catch (err: any) {
-        console.log("Error on adminLogout:", err.message);
-        res.redirect("/admin");
+        console.log("logout")
+        req.session.destroy(function () {
+            res.redirect('/admin')
+        })
+
+    } catch (err) {
+        console.log("Error, ProcessLogin", err);
+        res.redirect('/admin')
+
     }
+
 };
 
-restaurantController.checkAdminAuthSession = async (
+
+restaurantController.checkoutSession = async (
     req: AdminRequest,
-    res: Response
-) => {
+    res: Response) => {
     try {
-        console.log("checkAuthSession");
+        console.log("Check")
+        if (req.session?.member) res.send(`<script>alert(${req.session.member.memberNick})</script>`)
 
-        if (req.session?.member) {
-            // res.send(`HI, ${req.session.member.memberNick}`);
-            res.send(`<script>alert(${req.session.member.memberNick})</script>`);
-        } else {
-            // res.send(Message.NOT_AUTHENTICATED);
-            res.send(`<script>alert(${Message.NOT_AUTHENTICATED})</script>`);
-        }
-    } catch (err: any) {
-        console.log("Error on processLogin:", err.message);
-        res.send(err);
+        else res.send(`<script>alert(${Message.NOT_AUTHENTICATED})</script>`)
+
+    } catch (err) {
+        console.log("Error, Check Auth", err);
+        res.send(err)
+
     }
 };
-
 
 restaurantController.verifyRestaurant = (
     req: AdminRequest,
     res: Response,
     next: NextFunction
-) => { 
-    if (req.session.member?.memberType === memberType.RESTAURANT) {
-          req.member = req.session.member;
-          next();
-        }
-    else {
+) => {
+
+    if (req.session?.member?.memberType === memberType.RESTAURANT) {
+        req.member = req.session.member;
+        next();
+    } else {
         const message = Message.NOT_AUTHENTICATED
-        res.send(`<script>alert("${message}"); window.location.replace("/admin/login")</script>`);
+        res.send(`<script>alert('${message}'); window.location.replace('/admin/login')</script>`)
+
     }
+
 }
-export default restaurantController;
- 
+
+
+
+
+export default restaurantController
