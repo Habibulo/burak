@@ -10,10 +10,9 @@ const productService = new ProductService()
 /* getAllProducts */
 productController.getAllProducts = async (req: AdminRequest, res: Response) => {
     try {
-        console.log('req.mem:', req.member);        
+        // console.log('req.mem:', req.member);        
         console.log("getAllProducts")
         res.render('products')
-
     } catch (err) {
         console.log("Error, Signup", err)
         if(err instanceof Errors) res.status(err.code).json(err)
@@ -24,6 +23,7 @@ productController.getAllProducts = async (req: AdminRequest, res: Response) => {
 productController.createNewProduct = async (req: Request, res: Response) => {
     try {
         console.log("createNewProduct")
+        res.send("done")
     } catch (err) {
         console.log("Error, createNewProduct", err)
         if(err instanceof Errors) res.status(err.code).json(err)
