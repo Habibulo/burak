@@ -22,9 +22,11 @@ routerAdmin.get("/logout", restaurantController.logout);
 routerAdmin.get("/product/all", 
     restaurantController.verifyRestaurant,
     productController.getAllProducts);
+
 routerAdmin.post("/product/create", 
     restaurantController.verifyRestaurant,
     productController.createNewProduct);
+    
 routerAdmin.post("/product/:id", 
     restaurantController.verifyRestaurant,
     productController.updateChosenProduct);

@@ -68,7 +68,7 @@ class MemberService {
         const member = await this.memberModel
             .findOne(
                 { memberNick: input.memberNick},
-                { _id: 0, memberNick: 1, memberPassword: 1 }
+                { memberNick: 1, memberPassword: 1 }
             )
             .exec()
         
@@ -80,8 +80,9 @@ class MemberService {
         
         // const isMatch = input.memberPassword === member.memberPassword
         if(!isMatch) throw new Errors(HttpCode.UNAUTHORISED, Message.WRONG_PASSWORD)
+        console.log("memberdan nima kelyabdi", member);
         
-        return await this.memberModel.findOne(member._id).exec()
+        return await this.memberModel.findById(member._id).exec()
         // const result = await this.memberModel.findOne({memberNick: input.memberNick}).exec()
         // console.log("result", result) 
         // return result           

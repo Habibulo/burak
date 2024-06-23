@@ -71,13 +71,15 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     try {
         // console.log("req.body: ", req.body);
 
-        if (!req.body) {
-            throw new Error("Request body is null");
-        }
+        // if (!req.body) {
+        //     throw new Error("Request body is null");
+        // }
 
         const input: LoginInput = req.body;
         console.log("input:", input);
         const result = await memberService.processLogin(input);
+        console.log("result", result);
+        
 
         // TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
