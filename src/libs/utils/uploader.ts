@@ -1,7 +1,7 @@
 import path from "path"
 import multer from "multer"
 import { v4 } from "uuid"
-const file = require('fs');
+
 
 function getTargetImageStorage(address: any) {
     return multer.diskStorage({
