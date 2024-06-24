@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { T } from "../libs/types/comments";
 import MemberService from '../models/Member.service';
 import { AdminRequest, LoginInput, MemberInput } from '../libs/types/member';
-import { Message } from '../libs/Errors';
+import Errors, { HttpCode, Message } from '../libs/Errors';
 import { memberType } from '../libs/enums/member.enum';
 
 
@@ -51,16 +51,21 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 restaurantController.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log("ProcessSignup")
+        
+        const file = req.file;
+        if(!file)
+            throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG)
 
         const newMember: MemberInput = req.body;
         newMember.memberType = memberType.RESTAURANT;
+        newMember.memberImage = file?.path
         const result = await memberService.processSignup(newMember)
 
         //TODO: SESSIONS AUTHENTICATION
 
         req.session.member = result;
         req.session.save(() => {
-            res.send(result)
+            res.redirect("/admin/product/all")
         })
 
 
@@ -82,8 +87,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
 
         req.session.member = result;
         req.session.save(() => {
-
-            res.send(result);
+            res.redirect("/admin/product/all")        
         });
 
     } catch (err) {
@@ -94,6 +98,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     }
 
 };
+
 restaurantController.logout = async (req: AdminRequest, res: Response) => {
     try {
         console.log("logout")
@@ -108,7 +113,6 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
     }
 
 };
-
 
 restaurantController.checkoutSession = async (
     req: AdminRequest,
@@ -131,7 +135,6 @@ restaurantController.verifyRestaurant = (
     res: Response,
     next: NextFunction
 ) => {
-
     if (req.session?.member?.memberType === memberType.RESTAURANT) {
         req.member = req.session.member;
         next();
@@ -140,10 +143,6 @@ restaurantController.verifyRestaurant = (
         res.send(`<script>alert('${message}'); window.location.replace('/admin/login')</script>`)
 
     }
-
 }
-
-
-
 
 export default restaurantController
