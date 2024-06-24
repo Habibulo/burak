@@ -2,6 +2,11 @@
 <body>
     <h1 style="align-content: center; color: rgb(228, 19, 19)">Welcome to Products Page</h1>
     <div><%=member.memberNick%></div>
+
+    <% products.map((value, key) => { %>
+       <p><%=value.productName %> - <%=value.productSize %></p> 
+    <% }) %>
+
 </body>
 <%- include('includes/header') %>
 </html>

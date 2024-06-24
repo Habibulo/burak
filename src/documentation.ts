@@ -136,7 +136,7 @@
         - Product Service Model - createNewProduct biznes mantiqini tashkil qilamiz
         - Product Service Model - updateChosenProduct mantiqini develop qilamiz
 =========================================================================
-        50 => Product - Service Model
-        - 
-        -
+        50 => Product Service Model
+        - getAllProducts mantiqini develop qilamiz
+        - productController lardan EJS file iga malumot yuborish mexanizmini organamiz
 */
