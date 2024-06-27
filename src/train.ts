@@ -1,26 +1,21 @@
 /* 
-  M-TASK: 
-    Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va 
-    array ichidagi har bir raqam uchun raqamni ozi va hamda 
-    osha raqamni kvadratidan tashkil topgan object hosil qilib, 
-    hosil bolgan objectlarni array ichida qaytarsin.
-    MASALAN: getSquareNumbers([1, 2, 3]) 
-    return [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}];
+  N-TASK: 
+    Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham,
+    orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
+    MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
 */
-
-interface NumberWithSquare {
-  number: number;
-  square: number;
+function palindromCheck(str: string): boolean {
+  // Remove any non-alphanumeric characters and convert to lowercase
+  const cleanedStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  // Reverse the cleaned string
+  const reversedStr = cleanedStr.split('').reverse().join('');
+  // Check if the cleaned string is equal to its reverse
+  return cleanedStr === reversedStr;
 }
 
-function getSquareNumbers(arr: number[]): NumberWithSquare[] {
-  return arr.map(num => ({
-      number: num,
-      square: num * num
-  }));
-}
-
-// Example usage:
-const result = getSquareNumbers([5, 8, 3, 7]);
-console.log(result); 
-// Output: [{number: 5, square: 25}, {number: 8, square: 64}, {number: 3, square: 9}, {number: 7, square: 49}]
+// Test cases
+console.log(palindromCheck("dad")); // true
+console.log(palindromCheck("son")); // false
+console.log(palindromCheck("A man, a plan, a canal, Panama")); // true
+console.log(palindromCheck("racecar")); // true
+console.log(palindromCheck("hello")); // false
