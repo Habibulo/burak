@@ -140,3 +140,27 @@
         - getAllProducts mantiqini develop qilamiz
         - productController lardan EJS file iga malumot yuborish mexanizmini organamiz
 */
+
+/*
+    51_52_Dars 
+    Darsimiz Rejasi:
+        51 => User Service Model
+        - User Service Model - getUser biznes mantiqini tashkil qilamiz => API
+        - User Service Model - updateChosenUser mantiqini develop qilamiz => API
+=========================================================================
+        52 => EJS - Admin Frontend Publishing
+        - 
+        - 
+*/
+
+/*
+    53_54_Dars 
+    Darsimiz Rejasi:
+        53 => 
+        - 
+        - 
+=========================================================================
+        54 => 
+        - 
+        - 
+*/

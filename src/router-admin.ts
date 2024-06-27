@@ -51,8 +51,16 @@ routerAdmin.post('/product/:id',
     restaurantController.verifyRestaurant,
     productController.updateChosenProduct)
 
-// /** User 
-//     router.ts qismida user uchun router lar joylashgan    
-// **/
+/* User */
+routerAdmin.get(
+    "/user/all",
+    restaurantController.verifyRestaurant,
+    restaurantController.getUsers
+  );
+  routerAdmin.post(
+    "/user/edit",
+    restaurantController.verifyRestaurant,
+    restaurantController.updateChosenUser
+  );
 
 export default routerAdmin 
