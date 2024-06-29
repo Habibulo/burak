@@ -156,11 +156,40 @@
 /*
     53_54_Dars 
     Darsimiz Rejasi:
-        53 => 
+        53 => EJS - Admin Login Jarayoni tahlili
+        - Request turlari va Traditional API request
+        - Admin Login Jarayonini tahlil qilamiz
+        - Admin Logout Jarayonini tahlil qilamiz
+=========================================================================
+        54 => Adminka Frontend ining signup jarayonini develop qilamiz
+        - jQuary organamiz
+        - Validationlar va frontend validation haqida organamiz
+        - Image preloading jarayonini tashkillashtiramiz
+        - Adminka signup jarayoninini yakunlaymiz
+*/
+
+
+/*
+    55_56_Dars 
+    Darsimiz Rejasi: 
+        55 => 
         - 
         - 
 =========================================================================
-        54 => 
+        56 => 
+        - 
+        - 
+*/
+
+
+/*
+    57_58_Dars 
+    Darsimiz Rejasi: 
+        57 => 
+        - 
+        - 
+=========================================================================
+        58 => 
         - 
         - 
 */

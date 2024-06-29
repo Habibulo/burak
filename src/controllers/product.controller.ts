@@ -40,7 +40,7 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
         await productService.createNewProduct(data)
         res.send(
             `<script>alert("Product succesfully created in DataBase");
-            window.location.replace('admin/product/all')</script>`)
+            window.location.replace('/admin/product/all')</script>`)
 
         // console.log("Bizning Datamiz", data);
 
@@ -49,7 +49,7 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
         const message = err instanceof Errors ? err.message: Message.CREATE_FAILED
         res.send(
             `<script>alert("${message}");
-            window.location.replace('admin/product/all')</script>`)
+            window.location.replace('/admin/product/all')</script>`)
     }
 };
 
