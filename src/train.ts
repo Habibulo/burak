@@ -1,20 +1,10 @@
 /* 
-  O-TASK:
-Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va
-array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
-MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
-*/
-const calculateSumOfNumbers = (input: any): number => {
-  // create 0 as starting point for numbers
-  let a = 0;
-  // Check numbers from input given as an argument
-  for (const ele of input) {
-    if(typeof ele === 'number')
-      a+=ele
-  }
-  // Check if there is a number isnide inputted data
-  return a
-}
+P-TASK:
 
-// Test cases
-console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35 ,90]))
+Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
+MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+*/
+type Arr = [string, string | number];
+const objectToArray = (obj: object): Arr[] => Object.entries(obj);
+
+console.log(objectToArray({a: 10, b: 20}));

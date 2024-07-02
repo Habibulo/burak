@@ -172,9 +172,10 @@
 /*
     55_56_Dars 
     Darsimiz Rejasi: 
-        55 => 
-        - 
-        - 
+        55 => EJS Frontend Product 
+        - Products sahifamizga haqiqiy datalarni chaqiramiz va render qilamiz
+        - Yangi Productlarni qoshish mantiqni develop qilamiz
+        - Frontendda mavjud productlarni update qilish mehanizmini develop qilamiz
 =========================================================================
         56 => 
         - 
