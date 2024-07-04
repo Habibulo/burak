@@ -19,7 +19,8 @@ class ProductService {
         const result = await this.productModel
         .find()
         .exec()
-        if(result.length == 0 ) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
+        if(result.length == 0 ) 
+            throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
         return result
     }
 

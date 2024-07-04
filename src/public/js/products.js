@@ -33,7 +33,7 @@ $(function () {
         productStatus: productStatus,
       });
       const result = response.data;
-      console.log("res", response.data);
+      console.log("javobgarlik", response.data);
       if (result.data) {
         console.log("Product updated!");
         $(".new-product-status").blur();

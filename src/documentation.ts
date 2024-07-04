@@ -187,8 +187,10 @@
     57_58_Dars 
     Darsimiz Rejasi: 
         57 => 
-        - 
-        - 
+        - React loyihamizni o'rnatamiz
+        - Virtual dom tushunchasi tahlili
+        - React Documentationni o'rganamiz
+        - Loyihamizning packagelarini sozlaymiz va loyihamizning standartini joriy etamiz
 =========================================================================
         58 => 
         - 
