@@ -1,15 +1,17 @@
-/* 
-P-TASK:Q-TASK:
-Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, 
-ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
-MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true;
-         hasProperty({name: "BMW", model: "M3"}, "year") return false
+/* R-TASK:
+
+Shunday function yozing, u string parametrga ega bolsin. 
+String "1+2" holatda pass qilinganda string ichidagi 
+sonlar yigindisini number holatda qaytarsin.
+MASALAN: calculate("1+3") return 4;
 */
-function hasProperty(obj: { name?: string; model?: string; hasOwnProperty?: any; }, prop: string) {
-    return obj.hasOwnProperty(prop);
+function calculate(expression: string): number {
+    const numbers: string[] = expression.split('+');
+    const numericValues: number[] = numbers.map(num => parseInt(num.trim(), 10));
+    const sum: number = numericValues.reduce((acc, curr) => acc + curr, 0);
+    return sum;
 }
-
-// Test cases
-console.log(hasProperty({name: "BMW", model: "M3"}, "model")); // true
-console.log(hasProperty({name: "BMW", model: "M3"}, "year"));  // false
-
+// Example usage:
+console.log(calculate("1+3")); // Output: 4
+console.log(calculate("10+15+515+15+1+5+7")); // Output: 568
+console.log(calculate("100")); // Output: 100 (If there's only one number, it returns itself)
