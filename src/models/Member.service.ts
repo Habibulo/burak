@@ -1,7 +1,7 @@
 import MemberModel from "../schema/Member.model";
 import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
-import { memberType } from "../libs/enums/member.enum";
+import { memberStatus, memberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs"
 import { shapeIntoMongooseObjectId } from "../libs/config";
 class MemberService {
@@ -96,7 +96,12 @@ class MemberService {
     
         return result;
       }
-    
+    public async getMemberDetail(member: Member): Promise<Member> {
+        const memberId = shapeIntoMongooseObjectId(member._id)
+        const result = await this.memberModel.findOne({_id: memberId, memberStatus: memberStatus.ACTIVE}).exec()
+        if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
+        return result
+    }
       public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
         input._id = shapeIntoMongooseObjectId(input._id);
         const result = await this.memberModel
