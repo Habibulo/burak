@@ -18,6 +18,7 @@ export enum Message {
     USED_NICK = "Already in use",
     WRONG_PASSWORD = "Wrong password",
     NOT_AUTHENTICATED = "NOT_AUTHENTICATED",
+    TOKEN_CREATION_FAILED = "Token creation error",
 }
 class Errors extends Error {
     public code: HttpCode;
