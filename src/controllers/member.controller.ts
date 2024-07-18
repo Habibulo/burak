@@ -1,10 +1,11 @@
-import { Request, Response } from 'express';
-import { LoginInput, Member, MemberInput } from '../libs/types/member';
-import Errors, { HttpCode } from '../libs/Errors';
+import { NextFunction, Request, Response } from 'express';
+import { AdminRequest, LoginInput, Member, MemberInput } from '../libs/types/member';
+import Errors, { HttpCode, Message } from '../libs/Errors';
 import MemberService from '../models/Member.service';
 import { T } from '../libs/types/comments';
 import AuthService from '../models/Auth.service';
 import { AUTH_TIMER } from '../libs/config';
+import { memberType } from '../libs/enums/member.enum';
 
 
 const memberService = new MemberService()
@@ -61,5 +62,22 @@ memberController.login = async (req: Request, res: Response) => {
     }
 };
 
+
+memberController.verifyAuth = async (
+    req: Request,
+    res: Response,
+) => {
+    try {
+        let member = null
+        const token = req.cookies["accesToken"]
+        if(token) member = await authService.checkAuth(token)
+        if(!member) throw new Errors(HttpCode.UNAUTHORISED, Message.NOT_AUTHENTICATED)
+        res.status(HttpCode.OK).json({ member: member })
+    }
+    catch (err) {
+    console.log("Error verifyAuth for User", err);
+    if (err instanceof Errors) res.send(err.code).json(err)    
+    }
+}
 
 export default memberController

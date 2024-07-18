@@ -1,19 +1,21 @@
 import express from "express";
 import memberController from "./controllers/member.controller";
+import { verify } from "jsonwebtoken";
 const router = express.Router();
 
-/** Restaurant **/
-// Home Page
-// router.get("/", memberController.goHome);
-// Login Page
-router
-    // .get("/login", memberController.login)
-    .post("/login", memberController.login);
-// Sign-up Page
-router
-    .post("/signup", memberController.signup);
+/** Member **/
+router.post("/member/login", memberController.login);
+router.post("/member/signup", memberController.signup);
+router.get('/member/detail', memberController.verifyAuth)
 
 /** Product **/
-/** User **/
+
+// router.post("/login", memberController.login);
+// router.post("/signup", memberController.signup);
+// router.get('/member/')
+
+/** Order **/
+
+
 
 export default router;
