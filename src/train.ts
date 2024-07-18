@@ -12,3 +12,16 @@
 // asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 */
 
+function chunkArray<T>(array: T[], size: number): T[][] {
+   const result: T[][] = [];
+   for (let i = 0; i < array.length; i += size) {
+     const chunk = array.slice(i, i + size);
+     result.push(chunk);
+   }
+   return result;
+ }
+  
+ // Test qilish uchun:
+ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+ // Kutilayotgan natija: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+ 
