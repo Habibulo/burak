@@ -6,8 +6,18 @@ import uploader from "./libs/utils/uploader";
 const router = express.Router();
 
 /** Member **/
-router.post("/member/login", memberController.login);
-router.post("/member/signup", memberController.signup);
+router.get(
+    "/member/restaurant", 
+    memberController.getRestaurant
+)
+router.post(
+    "/member/login", 
+    memberController.login
+);
+router.post(
+    "/member/signup", 
+    memberController.signup
+);
 router.post(
     "/member/logout", 
     memberController.verifyAuth, 
@@ -17,21 +27,23 @@ router.get(
     memberController.verifyAuth,
     memberController.getMemberDetail
 )
-
 router.post(
     "/member/update", 
     memberController.verifyAuth,
     uploader('member').single('memberImage'),
     memberController.updateMember
 );
+router.get(
+    '/member/top-users',
+    memberController.getTopUsers
+)
+
+
 /** Product **/
 
-// router.post("/login", memberController.login);
-// router.post("/signup", memberController.signup);
-// router.get('/member/')
+
 
 /** Order **/
-
 
 
 export default router;

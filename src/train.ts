@@ -1,27 +1,38 @@
 /*
- TASK W
-    Shunday function yozing, u o'ziga parametr sifatida
-    yagona array va number qabul qilsin. Siz tuzgan function
-    arrayni numberda berilgan uzunlikda kesib bo'laklarga
-    ajratgan holatida qaytarsin.
+  X-TASK:
 
- MASALAN: chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
- return [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
-
-// Yuqoridagi namunada berilayotgan array ikkinchi parametr 3'ga
-// asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
+  Shunday function yozing, uni object va string parapetrlari bolsin. 
+  Function string parametri object ichida necha marotaba takrorlanganligini
+  qaytarsin (nested object bolsa ham sanasin)
+  MASALAN: 
+      countOccurrences(
+        {model: 'Bugatti', 
+         steer: {model: 'HANKOOK', size: 30}}, 
+         'model')
+        return 2
 */
+const countOccurrences = (obj: Record<string, any>, str: string): number => {
+  let keys = 0;
 
-function chunkArray<T>(array: T[], size: number): T[][] {
-   const result: T[][] = [];
-   for (let i = 0; i < array.length; i += size) {
-     const chunk = array.slice(i, i + size);
-     result.push(chunk);
-   }
-   return result;
- }
-  
- // Test qilish uchun:
- console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
- // Kutilayotgan natija: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
- 
+  const traverse = (obj: Record<string, any>) => {
+    for (let key in obj) {
+      if (key === str) keys++;
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        traverse(obj[key]);
+      }
+    }
+  };
+
+  traverse(obj);
+  return keys;
+};
+
+console.log(
+  countOccurrences(
+    {
+      model: "Bugatti",
+      steer: { model: "HANKOOK", size: 30, type: { model: "34" } },
+    },
+    "model"
+  )
+);

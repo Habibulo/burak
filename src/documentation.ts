@@ -210,8 +210,8 @@
         - updateMember RestApi ni develop qilamiz
 =========================================================================
         71 => 
-        - 
-        - 
+        - Mongoose Query commandlarini organamiz
+        - getTopUsers API hosil qilamiz
 =========================================================================
         72 => 
         - 
