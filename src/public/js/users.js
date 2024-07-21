@@ -12,6 +12,7 @@ $(
       })
       .then((result) => {
         console.log(result);
+        $(e.target).blur();
       })
       .catch((err) => {
         console.log(err);

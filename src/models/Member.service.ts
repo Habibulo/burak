@@ -42,7 +42,35 @@ class MemberService {
         if(!isMatch) throw new Errors(HttpCode.UNAUTHORISED, Message.WRONG_PASSWORD)
         return await this.memberModel.findOne(member._id).lean().exec()
     }
-
+    public async getUsers(): Promise<Member[]> {
+        const result = await this.memberModel
+          .find({ memberType: memberType.USER })
+          .exec();
+        return result;
+      }
+    public async getMemberDetail(member: Member): Promise<Member> {
+        const memberId = shapeIntoMongooseObjectId(member._id)
+        const result = await this.memberModel.findOne({_id: memberId, memberStatus: memberStatus.ACTIVE}).exec()
+        if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
+        return result
+    }
+    public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
+        input._id = shapeIntoMongooseObjectId(input._id);
+        const result = await this.memberModel
+          .findByIdAndUpdate({ _id: input._id }, input, { new: true })
+          .exec();
+        if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    
+        return result;
+      }
+    public async updateMember(member: Member, input: MemberUpdateInput): Promise<Member> {
+        const memberId = shapeIntoMongooseObjectId(member._id)
+        const result = await this.memberModel
+        .findOneAndUpdate({_id: memberId}, input, {new: true})
+        .exec()
+        if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED)
+        return result
+    }
     /* SSR */
 
     public async processSignup(input: MemberInput): Promise<Member> {
@@ -88,29 +116,7 @@ class MemberService {
         // console.log("result", result) 
         // return result           
     }
-    public async getUsers(): Promise<Member[]> {
-        const result = await this.memberModel
-          .find({ memberType: memberType.USER })
-          .exec();
-        if (result.length == 0) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     
-        return result;
-      }
-    public async getMemberDetail(member: Member): Promise<Member> {
-        const memberId = shapeIntoMongooseObjectId(member._id)
-        const result = await this.memberModel.findOne({_id: memberId, memberStatus: memberStatus.ACTIVE}).exec()
-        if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
-        return result
-    }
-      public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
-        input._id = shapeIntoMongooseObjectId(input._id);
-        const result = await this.memberModel
-          .findByIdAndUpdate({ _id: input._id }, input, { new: true })
-          .exec();
-        if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-    
-        return result;
-      }
 }
 export default MemberService
 

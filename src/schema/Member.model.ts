@@ -22,6 +22,10 @@ const memeberSchema = new Schema({
     },
 
 
+    memberDesc: {
+        type: String
+    },
+
     memberPhone: {
         type: String,
         index: { unique: true, sparse: true },

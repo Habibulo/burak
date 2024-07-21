@@ -1,6 +1,8 @@
 import express from "express";
 import memberController from "./controllers/member.controller";
 import { verify } from "jsonwebtoken";
+import makeUploader from "./libs/utils/uploader";
+import uploader from "./libs/utils/uploader";
 const router = express.Router();
 
 /** Member **/
@@ -16,6 +18,12 @@ router.get(
     memberController.getMemberDetail
 )
 
+router.post(
+    "/member/update", 
+    memberController.verifyAuth,
+    uploader('member').single('memberImage'),
+    memberController.updateMember
+);
 /** Product **/
 
 // router.post("/login", memberController.login);
