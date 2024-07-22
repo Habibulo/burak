@@ -7,7 +7,7 @@
   MASALAN: 
       countOccurrences(
         {model: 'Bugatti', 
-         steer: {model: 'HANKOOK', size: 30}}, 
+         steer: {model: 'HANKOOK', size: 34}}, 
          'model')
         return 2
 */

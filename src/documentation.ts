@@ -198,10 +198,6 @@
 */
 
 
-
-
-
-
 /*
     70_71_72_Dars 
     Darsimiz Rejasi: 
@@ -214,6 +210,35 @@
         - getTopUsers API hosil qilamiz
 =========================================================================
         72 => 
+        - 
+        -
+*/
+
+
+/*
+    73_74_Dars 
+    Darsimiz Rejasi: 
+        73 => 
+        - MongoDB Aggregationni o'rganamiz
+        - URLda qatnashadigan query va params tushunchalari
+        - getProducts bizness mantiqini develop qilamiz
+=========================================================================
+        74 => 
+        - 
+*/
+
+
+/*
+    75_76_77_Dars 
+    Darsimiz Rejasi: 
+        75 => 
+        - 
+=========================================================================
+        76 => 
+        - 
+        - 
+=========================================================================
+        77 => 
         - 
         -
 */

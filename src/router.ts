@@ -1,8 +1,7 @@
 import express from "express";
 import memberController from "./controllers/member.controller";
-import { verify } from "jsonwebtoken";
 import makeUploader from "./libs/utils/uploader";
-import uploader from "./libs/utils/uploader";
+import productController from "./controllers/product.controller";
 const router = express.Router();
 
 /** Member **/
@@ -30,7 +29,7 @@ router.get(
 router.post(
     "/member/update", 
     memberController.verifyAuth,
-    uploader('member').single('memberImage'),
+    makeUploader('member').single('memberImage'),
     memberController.updateMember
 );
 router.get(
@@ -41,7 +40,7 @@ router.get(
 
 /** Product **/
 
-
+router.get("/product/all", productController.getProducts)
 
 /** Order **/
 

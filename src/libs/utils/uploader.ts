@@ -44,9 +44,6 @@ function getTargetImageStorage(address: any) {
   return multer.diskStorage({
     destination: function (req, file, cb) {
       const uploadPath = `./uploads/${address}`;
-      if (!fs.existsSync(uploadPath)) {
-        fs.mkdirSync(uploadPath, { recursive: true });
-      }
       cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
@@ -57,28 +54,28 @@ function getTargetImageStorage(address: any) {
   });
 }
 
+
 const ensureBaseDirectoriesExist = (baseDir: string) => {
-  const uploadsDir = path.join(baseDir, 'uploads');
+  const uploadsDir = path.join(baseDir, '../../../uploads');
   const membersDir = path.join(uploadsDir, 'members');
   const productsDir = path.join(uploadsDir, 'products');
 
-  if (!fs.existsSync(uploadsDir)) {
+  if (
+    !fs.existsSync(uploadsDir) && 
+    !fs.existsSync(membersDir)&&
+    !fs.existsSync(productsDir)
+  ) {
     fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(membersDir)) {
     fs.mkdirSync(membersDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(productsDir)) {
     fs.mkdirSync(productsDir, { recursive: true });
   }
-};
+}
 
 const makeUploader = (address: string) => {
   ensureBaseDirectoriesExist(__dirname);
   const storage = getTargetImageStorage(address);
   return multer({ storage: storage });
 };
+
 
 export default makeUploader;

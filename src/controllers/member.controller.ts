@@ -5,7 +5,6 @@ import MemberService from '../models/Member.service';
 import { T } from '../libs/types/comments';
 import AuthService from '../models/Auth.service';
 import { AUTH_TIMER } from '../libs/config';
-import { memberType } from '../libs/enums/member.enum';
 
 
 const memberService = new MemberService()
