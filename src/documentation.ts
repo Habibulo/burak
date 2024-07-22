@@ -224,7 +224,9 @@
         - getProducts bizness mantiqini develop qilamiz
 =========================================================================
         74 => 
-        - 
+        - getProduct business mantiqini develop qilamiz
+        - Tomoshaga bog'liq bolgan Service hamda Schema modellarini tashkil etamiz
+        - Tomosha qilish tizimini integrasiyasini amalga oshiramiz
 */
 
 

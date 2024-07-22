@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Errors, { HttpCode, Message } from '../libs/Errors';
 import ProductService from "../models/Product.service"
-import { AdminRequest } from '../libs/types/member';
+import { AdminRequest, ExtendedRequest } from '../libs/types/member';
 import { T } from '../libs/types/comments';
 import { ProductInput, ProductInquiry } from '../libs/types/product';
 import { ProductCollection } from '../libs/enums/product.enum';
@@ -32,7 +32,19 @@ productController.getProducts = async (req: Request, res: Response) => {
         else res.status(Errors.standard.code).json(Errors.standard)
     }
 }
-
+productController.getProduct = async (req: ExtendedRequest, res: Response) => {
+    try {
+        console.log("getProduct")
+        const id: string = req.params.id;
+        const memberId = req.member?._id ?? null,
+            result = await productService.getProduct(memberId, id)
+        res.status(HttpCode.OK).json(result)
+    } catch (err) {
+        console.log("Error, getProduct", err);
+        if (err instanceof Errors) res.status(err.code).json(err)
+        else res.status(Errors.standard.code).json(Errors.standard)
+    }
+}
 /*BSSR*/
 ``
 productController.getAllProducts = async (req: Request, res: Response) => {
