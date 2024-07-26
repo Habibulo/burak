@@ -78,6 +78,21 @@ class MemberService {
         if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED)
         return result
     }
+    public async addUserPoint(member: Member, point: number): Promise<Member> {
+        const memberId = shapeIntoMongooseObjectId(member._id);
+
+        return await this.memberModel
+            .findOneAndUpdate(
+                {
+                    _id: memberId,
+                    memberType: memberType.USER,
+                    memberStatus: memberStatus.ACTIVE,
+                },
+                { $inc: { memberPoints: point } },
+                { new: true }
+            )
+            .exec();
+    }
     /* SSR */
 
     public async processSignup(input: MemberInput): Promise<Member> {
