@@ -229,12 +229,13 @@
         - Tomosha qilish tizimini integrasiyasini amalga oshiramiz
 */
 
-
 /*
     75_76_77_Dars 
     Darsimiz Rejasi: 
         75 => 
-        - 
+        - Orderlarga daxidor bo lgan Schema modellarini hosil etamiz
+        - Orderlarimiz uchun xizmat qiladigan Order Controller va Order Service Modellarini hosil etamiz
+        - createOrder business mantiqini develop qilamiz
 =========================================================================
         76 => 
         - 
@@ -243,4 +244,14 @@
         77 => 
         - 
         -
+*/
+/*
+    78_79_Dars 
+    Darsimiz Rejasi: 
+        78 => 
+        - 
+=========================================================================
+        79 => 
+        - 
+        - 
 */
