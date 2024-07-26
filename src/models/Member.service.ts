@@ -36,7 +36,7 @@ class MemberService {
         const member = await this.memberModel
             .findOne(
                 { memberNick: input.memberNick},
-                { _id: 0, memberNick: 1, memberPassword: 1 }
+                { _id: 1, memberNick: 1, memberPassword: 1, memberStatus: 1 }
             )
             .exec()
         
@@ -47,7 +47,7 @@ class MemberService {
         console.log("isMatch:", isMatch);
         
         if(!isMatch) throw new Errors(HttpCode.UNAUTHORISED, Message.WRONG_PASSWORD)
-        return await this.memberModel.findOne(member._id).lean().exec()
+        return await this.memberModel.findById(member._id).lean().exec()
     }
     public async getUsers(): Promise<Member[]> {
         const result = await this.memberModel
