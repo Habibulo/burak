@@ -238,20 +238,33 @@
         - createOrder business mantiqini develop qilamiz
 =========================================================================
         76 => 
-        - 
-        - 
+        - getMyOrders mantiqini develop qilamiz 
 =========================================================================
         77 => 
-        - 
-        -
+        - updateOrders mantini develop qilamiz
+        - addUserPoint mantiqini develop qilamiz
 */
+
 /*
     78_79_Dars 
     Darsimiz Rejasi: 
         78 => 
-        - 
+        - Reactning Class va Functional Componentlarini o'rganamiz
+        - Lifecycle methodlarini birga tahlil etamiz
+        - useState hookini o'rganamiz
+        - useEffect hookini birga o'rganamiz
 =========================================================================
         79 => 
+        - 
+        - 
+*/
+/*
+    80_Dars 
+    Darsimiz Rejasi: 
+        80 => 
+        - 
+=========================================================================
+        81 => 
         - 
         - 
 */

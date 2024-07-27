@@ -14,9 +14,7 @@ const orderController: T = {};
 orderController.createOrder = async (req: ExtendedRequest, res: Response) => {
     try {
         console.log("createOrder");
-
         const result = await orderService.createOrder(req.member, req.body)
-
         res.status(HttpCode.CREATED).json(result)
     } catch (err) {
         console.log("Error, createOrder", err);
@@ -50,13 +48,7 @@ orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
     try {
         console.log("UpdateOrder");
         const input: OrderUpdateInput = req.body;
-        
         const result = await orderService.updateOrder(req.member, input)
-
-
-
-
-
         res.status(HttpCode.CREATED).json(result)
     } catch (err) {
         console.log("Error, UpdateOrder", err);

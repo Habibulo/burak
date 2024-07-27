@@ -84,21 +84,31 @@ class OrderService {
   ): Promise<Order[]> {
     const memberId = shapeIntoMongooseObjectId(member._id);
     const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
-    console.log("aggregate bogandan oldin matches",matches);
     const result = await this.orderModel
       .aggregate([
         { $match: matches },
         { $sort: { updatedAt: -1 } },
         { $skip: (inquiry.page - 1) * inquiry.limit },
         { $limit: inquiry.limit },
-        
+        {
+            $lookup: {
+                from: "orderItems",
+                localField: "_id",
+                foreignField: "orderId",
+                as: "orderItems",
+            },
+        },
+        {
+            $lookup: {
+                from: "products",
+                localField: "orderItems.productId",
+                foreignField: "_id",
+                as: "productData"
+            }
+        }
       ])
-      .exec();
-    
-    console.log("aggregate bogandan keyin result",result);
-     
+      .exec();     
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-
     return result;
   }
 

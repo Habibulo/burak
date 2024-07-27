@@ -1,12 +1,12 @@
 /*
- Y-TASK:
-
-  Shunday function yozing, uni sonlardan tashkil topgan array qabul qilsin. 
-  Function arraydagi juft sonlarni yigindisini qaytarsin
-  MASALAN: sumEvens([1,2,3]) return 2
+  ZB-TASK:
+    Shunday function yozing, uni 2 ta number parametri bolsin va 
+    berilgan sonlar orasidan random raqam return qilsin
+    MASALAN: randomBetween(30, 50) return 45
 */
-const sumEvens = (arr: number[]): number => {
-  return arr.filter(num => num % 2 === 0).reduce((acc, num) => acc + num, 0);
+function randomBetween(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-console.log(sumEvens([1, 2, 3, 4, 5, 6, 7, 8, 10])); // Output: 30
+const randomNumber = randomBetween(30, 50);
+console.log(randomNumber); // Output: A random number between 30 and 50, inclusive
