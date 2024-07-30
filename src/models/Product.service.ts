@@ -21,7 +21,7 @@ class ProductService {
     this.viewService = new ViewService();
   }
 
-  /*SPA*/
+  /* SPA */
 
   public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
     const match: T = { productStatus: ProductStatus.PROCESS };
@@ -30,6 +30,7 @@ class ProductService {
     if (inquiry.search) {
       match.productName = { $regex: new RegExp(inquiry.search, "i") };
     }
+
     const sort: T =
       inquiry.order === "productPrice"
         ? { [inquiry.order]: 1 }
@@ -43,6 +44,7 @@ class ProductService {
         { $limit: inquiry.limit * 1 },
       ])
       .exec();
+
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result;
@@ -55,7 +57,7 @@ class ProductService {
     const productId = shapeIntoMongooseObjectId(id);
 
     let result = await this.productModel
-      .findOne({
+      .findById({
         _id: productId,
         productStatus: ProductStatus.PROCESS,
       })
@@ -69,9 +71,6 @@ class ProductService {
         viewRefId: productId,
         viewGroup: ViewGroup.PRODUCT,
       };
-
-      console.log("Product.Service memberId:", memberId);
-
       const existView = await this.viewService.checkViewExistance(input);
 
       console.log("exist:", !!existView);
@@ -83,11 +82,10 @@ class ProductService {
         result = await this.productModel
           .findByIdAndUpdate(
             productId,
-            { $inc: { productViews: 1 } },
+            { $inc: { productViews: +1 } },
             { new: true }
           )
           .exec();
-        console.log("result:", result);
       }
     }
 

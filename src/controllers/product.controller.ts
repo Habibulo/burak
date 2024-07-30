@@ -21,11 +21,13 @@ productController.getProducts = async (req: Request, res: Response) => {
       page: Number(page),
       limit: Number(limit),
     };
+    console.log("inquiry shakli:", inquiry);
+    
     if (productCollection)
       inquiry.productCollection = productCollection as ProductCollection;
     if (search) inquiry.search = String(search);
     const result = await productService.getProducts(inquiry);
-
+    
     res.status(HttpCode.OK).json(result);
   } catch (err) {
     console.log("Error, getProducts", err);
@@ -40,7 +42,7 @@ productController.getProduct = async (
   try {
     console.log("getProduct");
     const { id } = req.params;
-    // console.log("request malumotlar", req.params);
+    console.log("request malumotlar", req.params);
     const memberId = req.member?._id ?? null;
     console.log("user ID: ", memberId);
 
