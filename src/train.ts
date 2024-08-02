@@ -1,20 +1,29 @@
 /*
-  TASK ZC
-    Selisy (°C) shkalasi bo'yicha raqam qabul qilib, uni
-    Ferenhayt (°F) shkalisaga o'zgaritib beradigan function yozing.
-
-    MASALAN: celsiusToFahrenheit(0) return 32;
-    MASALAN: celsiusToFahrenheit(10) return 50;
-
-    Yuqoridagi misolda, 0°C, 32°F'ga teng.
-    Yoki 10 gradus Selsiy, 50 Farenhaytga teng.
-
-    °C va °F => Tempraturani o'lchashda ishlatiladigan o'lchov birligi.
+  ZD-TASK:
+    Shunday function yozing, uni number, array va number parametrlari bolsin va 
+    berilgan 1-parametr numberga teng indexni array ichidan topib 3-parametrdagi 
+    raqam bilan almashtirib yangilangan arrayni qaytarsin.
+    MASALAN: changeNumberInArray(1, [1,3,7,2], 2) return [1,2,7,2]
 */
-function celsiusToFahrenheit(celsius: number): number {
-  return (celsius * 9 / 5) + 32;
+
+function changeNumberInArray(
+  targetNumber: number, 
+  arr: number[], 
+  newNumber: number
+): number[] {
+  // Find the index of the target number in the array
+  const index = arr.indexOf(targetNumber);
+
+  // If the target number is found in the array
+  if (index !== -1) {
+    // Replace the number at the found index with the new number
+    arr[index] = newNumber;
+  }
+
+  // Return the updated array
+  return arr;
 }
 
 // Example usage:
-console.log(celsiusToFahrenheit(0)); // Output: 32
-console.log(celsiusToFahrenheit(10)); // Output: 50
+const result = changeNumberInArray(1, [1, 3, 7, 2], 2);
+console.log(result); // Output: [1, 2, 7, 2]
