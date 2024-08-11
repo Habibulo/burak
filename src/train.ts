@@ -1,17 +1,27 @@
 /*
- TASK ZG
-   String sifatida berilgan string parametrni
-   snake case'ga o'tkazib beradigan function yozing.
-   MASALAN: convertToSnakeCase('name should be a string')
-   return 'name_should_be_a_string'
+ZH-TASK:
+  Shunday function yozing, u berilgan array parametrni ichidagi eng katta 
+  raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
+  MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
 */
-function convertToSnakeCase(input: string): string {
-  // Trim the input string to remove leading and trailing whitespace
-  const trimmedInput = input.trim();
-  // Replace spaces with underscores and convert the string to lowercase
-  const snakeCaseString = trimmedInput.replace(/\s+/g, '_').toLowerCase();
-  return snakeCaseString;
+function findDisappearedNumbers(arr: number[]): number[] {
+    // Sort the array in ascending order
+    arr.sort((a, b) => a - b);
+    
+    const maxNum = Math.max(...arr);
+    const result: number[] = [];
+    
+    // Loop through numbers from 1 to the maximum number in the array
+    for (let i = 1; i <= maxNum; i++) {
+        // If the number is not in the array, add it to the result
+        if (!arr.includes(i)) {
+            result.push(i);
+        }
+    }
+    
+    return result;
 }
+
 // Example usage:
-const result = convertToSnakeCase('name should be a string');
-console.log(result); // Output: 'name_should_be_a_string'
+const missingNumbers = findDisappearedNumbers([1, 3, 4, 7]);
+console.log(missingNumbers); // Output: [2, 5, 6]
