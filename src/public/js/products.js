@@ -49,7 +49,7 @@ const validateForm = () => {
   const productName = $(".product-name").val();
   const productPrice = $(".product-price").val();
   const productLeftCount = $(".product-left-count").val();
-  const productCollection = $(".product-collection").val();
+  const productCategory = $(".product-category").val();
   const productDesc = $(".product-desc").val();
   const productStatus = $(".product-status").val();
 
@@ -57,7 +57,7 @@ const validateForm = () => {
     productName === "" ||
     productPrice === "" ||
     productLeftCount === "" ||
-    productCollection === "" ||
+    productCategory === "" ||
     productDesc === "" ||
     productStatus === ""
   ) {
